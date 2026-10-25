@@ -1,0 +1,17 @@
+name: Soak - Hung Deploy Simulation
+
+# Manual trigger ONLY - never runs on push or any other event.
+on:
+  workflow_dispatch:
+
+jobs:
+  soak:
+    name: Idle for ~30 minutes (simulated hung deploy)
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Simulate hung deploy
+        run: |
+          echo "Soak started at $(date -u +%FT%TZ) - simulating a hung deploy..."
+          sleep 1800
+          echo "Soak finished at $(date -u +%FT%TZ)."
